@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "deno.ns",
+      "deno.window",
+      "dom",
+      "dom.asynciterable"
+    ]
+  },
+  "tasks": {
+    "tauri": "cargo tauri dev",
+    "dev:serve": "axink bundle -w & axink serve",
+    "serve": "axink serve",
+    "build": "axink bundle",
+    "dev": "deno task build & deno task tauri",
+    "tools": "deno run --allow-read src/tools.ts",
+    "compile": "deno task build & cargo tauri build"
+  },
+  "lint": {
+    "include": ["src/", ".bundler/"],
+    "rules": {
+      "tags": ["recommended"],
+      "include": ["ban-untagged-todo"],
+      "exclude": ["no-unused-vars"]
+    }
+  },
+  "fmt": {
+    "include": ["./src/", ".bundler/"],
+    "useTabs": false,
+    "lineWidth": 80,
+    "indentWidth": 2,
+    "singleQuote": true,
+    "proseWrap": "preserve"
+  },
+  "imports": {
+    "@axink/core": "jsr:@axink/core@^0.1.3",
+    "@game/entities": "./src/entities/.!entities.ts",
+    "@game/resources": "./src/resources/.!resources.ts",
+    "@game/scripts": "./src/scripts/.!scripts.ts"
+  }
+}
